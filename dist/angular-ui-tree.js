@@ -349,6 +349,9 @@
           collapseOrExpand($scope.$nodesScope, false);
         };
 
+        $scope.$on('$destroy', function (){
+          $scope.$element = null;
+        });
       }
     ]);
 })();
@@ -1172,7 +1175,7 @@
               angular.element($document).unbind('touchmove', dragMoveEvent); // Mobile
               angular.element($document).unbind('mouseup', dragEndEvent);
               angular.element($document).unbind('mousemove', dragMoveEvent);
-              angular.element($window.document.body).unbind('mouseleave', dragCancelEvent);
+              angular.element($document).unbind('mouseleave', dragCancelEvent);
             };
 
             var dragStartEvent = function(e) {
@@ -1205,12 +1208,22 @@
             };
             bindDrag();
 
+            var unbind = function(e)
+            {
+              dragEnd(e);
+              angular.element($window.document.body).unbind('keydown');
+            };
+
+            bindDrag();
+
             angular.element($window.document.body).bind("keydown", function(e) {
               if (e.keyCode == 27) {
                 scope.$$apply = false;
                 dragEnd(e);
               }
             });
+
+            scope.$on("$destroy", unbind);
           }
         };
       }
