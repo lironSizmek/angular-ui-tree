@@ -645,7 +645,7 @@
           }
 
           scope.$watch('$nodesScope.$modelValue.length', function() {
-            if (scope.$nodesScope. && scope.$nodesScope.$modelValue) {
+            if (scope.$nodesScope && scope.$nodesScope.$modelValue) {
               scope.resetEmptyElement();
             }
           }, true);
