@@ -20,6 +20,12 @@
             scope.$nodeScope = treeNodeCtrl.scope;
             treeNodeCtrl.scope.$handleScope = scope;
           }
+          
+          scope.$on('$destroy', function() {
+            if (config.handleClass) {
+              element.removeClass(config.handleClass);
+            }
+          });
         }
       };
     }
