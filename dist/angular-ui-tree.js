@@ -726,7 +726,15 @@
             scope.$callbacks = callbacks;
           }, true);
 
+          scope.$on('$destroy', function() {
+            if (config.treeClass) {
+              element.removeClass(config.treeClass);
+            }
 
+            if (config.emptyTreeClass) {
+              scope.$emptyElm.removeClass(config.emptyTreeClass);
+            }            
+          });
         }
       };
     }
@@ -772,6 +780,12 @@
               scope.$modelValue = ngModel.$modelValue;
             };
           }
+          
+          scope.$on('$destroy', function() {
+            if (config.nodesClass) {
+              element.removeClass(config.nodesClass);
+            }
+          })          
 
           scope.$watch(attrs.maxDepth, function(val) {
             if((typeof val) == "number") {
@@ -1212,6 +1226,9 @@
             {
               dragEnd(e);
               angular.element($window.document.body).unbind('keydown');
+              if (config.nodeClass) {
+                element.removeClass(config.nodeClass);
+              }              
             };
 
             bindDrag();
@@ -1255,6 +1272,12 @@
           }
         }
       };
+      
+      scope.$on('$destroy', function() {
+        if (config.handleClass) {
+          element.removeClass(config.handleClass);
+        }
+      });
     }
   ]);
 })();
