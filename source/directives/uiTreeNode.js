@@ -934,6 +934,9 @@
             var unbind = function() {
               dragEnd();
               angular.element($document).unbind('keydown').unbind('keyup');
+              if (config.nodeClass) {
+                element.removeClass(config.nodeClass);
+              }
             };
 
             bindDrag();
