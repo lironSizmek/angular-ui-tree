@@ -786,6 +786,10 @@
               element.removeClass(config.nodesClass);
             }
           })          
+          
+          attrs.$observe('uiTreeNodes', function(val) {
+              if (!val) element.removeClass(config.nodesClass);
+          })          
 
           scope.$watch(attrs.maxDepth, function(val) {
             if((typeof val) == "number") {
