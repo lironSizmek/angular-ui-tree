@@ -1241,6 +1241,13 @@
             });
 
             scope.$on("$destroy", unbind);
+            attrs.$observe('uiTreeNode', function(val) {
+                if (!val) {
+                    if (config.nodeClass) {
+                        element.removeClass(config.nodeClass);
+                    }
+                }
+            });            
           }
         };
       }
