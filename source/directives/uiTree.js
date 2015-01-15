@@ -135,6 +135,17 @@
           };
 
           scope.$callbacks = callbacks;
+          
+          // Remove classes
+          scope.$on('$destroy', function() {
+         if (config.treeClass) {
+            element.removeClass(config.treeClass);
+          }
+
+          if (config.emptyTreeClass) {
+            scope.$emptyElm.removeClass(config.emptyTreeClass);
+          }            
+          });
         }
       };
     }
