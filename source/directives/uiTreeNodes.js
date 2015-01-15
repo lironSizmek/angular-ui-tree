@@ -41,6 +41,12 @@
               scope.$modelValue = ngModel.$modelValue;
             };
           }
+          
+          scope.$on('$destroy', function() {
+            if (config.nodesClass) {
+              element.removeClass(config.nodesClass);
+            }
+          })
         }
       };
     }
